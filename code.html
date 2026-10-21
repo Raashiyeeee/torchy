@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>TORCHY ($TORCHY) — Official Mascot Meme Token of @torchpaddotfun</title>
+  <meta content="Official mascot meme token of @torchpaddotfun on Robinhood Chain. First runner, first graduated token. The flame that never dies." name="description"/>
+  <meta content="#0A0A0A" name="theme-color"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <!-- Security & Anti-Injection Hardening -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://api.dexscreener.com; object-src 'none'; base-uri 'self'; form-action 'self';"/>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta http-equiv="X-Frame-Options" content="DENY"/>
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"/>
+
+  <!-- Open Graph / Twitter -->
+  <meta content="website" property="og:type"/>
+  <meta content="TORCHY ($TORCHY) — Official Mascot Meme Token" property="og:title"/>
+  <meta content="First runner, first graduated token on Robinhood Chain. The flame that never dies." property="og:description"/>
+  <meta content="images/hero.webp" property="og:image"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="@torchylabs" name="twitter:site"/>
+  <meta content="TORCHY ($TORCHY)" name="twitter:title"/>
+  <meta content="Official Mascot of @torchpaddotfun on Robinhood Chain." name="twitter:description"/>
+  <meta content="images/hero.webp" name="twitter:image"/>
+
+  <!-- Preconnect & Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --bg-main: #0A0A0A;
+      --bg-alt: #0F1210;
+      --bg-card: #151A17;
+      --bg-card-border: rgba(57, 255, 20, 0.18);
+      --primary: #39FF14;
+      --primary-hover: #00FF88;
+      --secondary: #00CC66;
+      --text-head: #FFFFFF;
+      --text-body: #A8B0AB;
+      --text-muted: #6B7570;
+      --font-pixel: 'Press Start 2P', monospace, sans-serif;
+      --font-accent: 'Silkscreen', monospace, sans-serif;
+      --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --glow-primary: 0 0 20px rgba(57, 255, 20, 0.4);
+      --glow-strong: 0 0 35px rgba(57, 255, 20, 0.7);
+      --nav-height: 72px;
+      --border-radius-pill: 9999px;
+      --border-radius-card: 20px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-main);
+      color: var(--text-body);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(57, 255, 20, 0.1) 0%, transparent 60%),
+        radial-gradient(circle at 10% 40%, rgba(0, 204, 102, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 75%, rgba(57, 255, 20, 0.05) 0%, transparent 50%);
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    /* Keep CA address selectable for copying */
+    .ca-address, input, textarea {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      user-select: text;
+    }
+
+    img, video {
+      -webkit-user-drag: none;
+    }
+
+    /* Accessibility focus */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .pixel-art {
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+    }
+
+    /* Canvas particle overlay */
+    #emberCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.8;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 3;
+    }
+
+    section {
+      scroll-margin-top: 100px;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-family: var(--font-pixel);
+      color: var(--primary);
+      text-align: center;
+      text-transform: uppercase;
+      font-size: clamp(1.5rem, 3.5vw, 2.75rem);
+      letter-spacing: 1px;
+      text-shadow: 0 0 18px rgba(57, 255, 20, 0.45);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 650px;
+      margin: -0.5rem auto 3rem auto;
+      font-size: 1.05rem;
+      color: var(--text-body);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       FLOATING PILL NAVBAR
+       ========================================================================== */
+    .nav-wrapper {
+      position: fixed;
+      top: 18px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 0 16px;
+      pointer-events: none;
+    }
+
+    .nav-pill {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      background: rgba(13, 17, 14, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(57, 255, 20, 0.32);
+      border-radius: var(--border-radius-pill);
+      padding: 8px 14px 8px 18px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7), 0 0 18px rgba(57, 255, 20, 0.18);
+      width: 100%;
+      max-width: 1040px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .nav-pill:hover {
+      border-color: rgba(57, 255, 20, 0.6);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 25px rgba(57, 255, 20, 0.3);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-pixel);
+      font-size: 0.95rem;
+      color: var(--text-head);
+      letter-spacing: 1px;
+    }
+
+    .nav-brand-icon {
+      width: 36px;
+      height: 36px;
+      background: #18221b;
+      border: 1.5px solid var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(57, 255, 20, 0.4);
+      flex-shrink: 0;
+    }
+
+    .nav-brand-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav-brand-text {
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 1.25rem;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-body);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: color 0.2s, text-shadow 0.2s;
+      position: relative;
+      padding: 4px 2px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+      box-shadow: 0 0 8px var(--primary);
+      border-radius: 2px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn-round {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-head);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .icon-btn-round:hover {
+      background: rgba(57, 255, 20, 0.18);
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 0 12px rgba(57, 255, 20, 0.4);
+    }
+
+    .icon-btn-round svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .btn-buy-nav {
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      background: var(--primary);
+      color: #000;
+      padding: 10px 18px;
+      border-radius: var(--border-radius-pill);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      box-shadow: var(--glow-primary);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .btn-buy-nav:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: var(--glow-strong);
+    }
+
+    /* Mobile Hamburger */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .mobile-menu-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .mobile-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 16px;
+      right: 16px;
+      background: rgba(15, 20, 16, 0.96);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(57, 255, 20, 0.35);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85), 0 0 25px rgba(57, 255, 20, 0.25);
+    }
+
+    .mobile-dropdown.open {
+      display: block;
+      animation: menuSlideDown 0.25s ease-out;
+    }
+
+    @keyframes menuSlideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-dropdown ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: center;
+    }
+
+    .mobile-dropdown a {
+      font-family: var(--font-pixel);
+      font-size: 0.85rem;
+      color: var(--text-head);
+      display: block;
+      padding: 8px 0;
+    }
+
+    .mobile-dropdown a:hover {
+      color: var(--primary);
+    }
+
+    .mobile-socials {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 75px;
+      padding-top: 140px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: #0A0A0A;
+      overflow: hidden;
+    }
+
+    .hero-bg img,
+    .hero-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      opacity: 0.85;
+      filter: saturate(1.2) contrast(1.1);
+      transform: scale(1.02);
+      transition: transform 0.8s ease-out;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 50% 40%, rgba(57, 255, 20, 0.15) 0%, transparent 65%),
+        linear-gradient(180deg, rgba(10, 10, 10, 0.15) 0%, rgba(10, 10, 10, 0.55) 55%, #0A0A0A 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(57, 255, 20, 0.14);
+      border: 1px solid rgba(57, 255, 20, 0.4);
+      border-radius: var(--border-radius-pill);
+      padding: 7px 18px;
+      font-size: 0.75rem;
+      font-family: var(--font-pixel);
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 18px rgba(57, 255, 20, 0.25);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-title {
+      font-family: var(--font-pixel);
+      font-size: clamp(2.5rem, 8vw, 5.8rem);
+      color: var(--text-head);
+      letter-spacing: 2px;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      text-shadow: 
+        0 0 30px rgba(57, 255, 20, 0.6),
+        4px 4px 0px #06220a,
+        -2px -2px 0px rgba(57, 255, 20, 0.4);
+    }
+
+    .hero-title span {
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+    }
+
+    .hero-line {
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      color: var(--text-body);
+      max-width: 650px;
+      margin: 0 auto 2.25rem auto;
+      font-weight: 600;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    /* Buttons System */
+    .btn {
+      font-family: var(--font-pixel);
+      font-size: 0.75rem;
+      padding: 16px 28px;
+      border-radius: var(--border-radius-pill);
+      font-weight: 700;
+      letter-spacing: 0.75px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #000;
+      box-shadow: var(--glow-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: var(--glow-strong);
+    }
+
+    .btn-secondary {
+      background: #18201B;
+      color: var(--text-head);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: #202c25;
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(57, 255, 20, 0.35);
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* ==========================================================================
+       TICKER MARQUEE BANDS (PURE CSS)
+       ========================================================================== */
+    .marquee-container {
+      width: 100%;
+      background: var(--primary);
+      color: #000;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 14px 0;
+      box-shadow: 0 0 30px rgba(57, 255, 20, 0.4);
+      position: relative;
+      z-index: 10;
+      display: flex;
+    }
+
+    .marquee-container.skewed {
+      transform: rotate(-0.85deg) scale(1.02);
+      margin: 1.5rem 0;
+      background: #34e012;
+    }
+
+    .marquee-track {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 1.5rem;
+      animation: marquee 24s linear infinite;
+      will-change: transform;
+    }
+
+    .marquee-container:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    .marquee-item {
+      font-family: var(--font-pixel);
+      font-size: 0.95rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .marquee-flame {
+      display: inline-block;
+      font-size: 1.15rem;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+    }
+
+    /* ==========================================================================
+       ABOUT ("MEET TORCHY") SECTION
+       ========================================================================== */
+    .section-about {
+      padding: 110px 0 90px 0;
+      background: var(--bg-alt);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
+    .about-text-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .about-text-col .section-title {
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-lead {
+      font-size: 1.15rem;
+      color: #FFFFFF;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .about-desc {
+      font-size: 1rem;
+      color: var(--text-body);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .about-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .about-image-col {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-image-frame {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 30px;
+      background: radial-gradient(circle at 50% 50%, rgba(57, 255, 20, 0.25) 0%, rgba(21, 26, 23, 0.5) 70%, transparent 100%);
+      padding: 16px;
+      border: 1px solid rgba(57, 255, 20, 0.25);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 35px rgba(57, 255, 20, 0.2);
+    }
+
+    .about-image-frame img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 25px rgba(57, 255, 20, 0.25));
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .about-image-frame:hover img {
+      transform: scale(1.03) rotate(-1deg);
+      filter: drop-shadow(0 18px 35px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 35px rgba(57, 255, 20, 0.4));
+    }
+
+    /* ==========================================================================
+       CONTRACT SECTION
+       ========================================================================== */
+    .section-ca {
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-main);
+    }
+
+    .floating-mascot {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 180px;
+      z-index: 2;
+      pointer-events: none;
+      filter: drop-shadow(0 0 25px rgba(57, 255, 20, 0.45));
+    }
+
+    .floating-mascot.left {
+      left: 3%;
+      animation: floatBobLeft 5s ease-in-out infinite;
+    }
+
+    .floating-mascot.right {
+      right: 3%;
+      animation: floatBobRight 5.5s ease-in-out infinite;
+    }
+
+    @keyframes floatBobLeft {
+      0%, 100% { transform: translateY(-50%) rotate(-4deg); }
+      50% { transform: translateY(-60%) rotate(2deg); }
+    }
+
+    @keyframes floatBobRight {
+      0%, 100% { transform: translateY(-50%) rotate(4deg); }
+      50% { transform: translateY(-40%) rotate(-2deg); }
+    }
+
+    .ca-box-container {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    .ca-pill-bar {
+      background: #151A17;
+      border: 1.5px solid rgba(57, 255, 20, 0.35);
+      border-radius: var(--border-radius-pill);
+      padding: 8px 10px 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(57, 255, 20, 0.15);
+      margin-bottom: 2rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .ca-pill-bar:hover {
+      border-color: var(--primary);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(57, 255, 20, 0.3);
+    }
+
+    .ca-label-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow: hidden;
+    }
+
+    .ca-tag {
+      font-family: var(--font-pixel);
+      font-size: 0.8rem;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .ca-address {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+      color: #FFFFFF;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      user-select: all;
+    }
+
+    .btn-copy {
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      background: var(--primary);
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--border-radius-pill);
+      cursor: pointer;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+      box-shadow: var(--glow-primary);
+    }
+
+    .btn-copy:hover {
+      background: var(--primary-hover);
+      transform: scale(1.04);
+      box-shadow: var(--glow-strong);
+    }
+
+    .btn-copy.copied {
+      background: #00FF88;
+      box-shadow: 0 0 25px #00FF88;
+    }
+
+    .ca-social-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 2rem;
+    }
+
+    .ca-icon-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #18201B;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-head);
+      transition: all 0.25s ease;
+    }
+
+    .ca-icon-btn:hover {
+      background: rgba(57, 255, 20, 0.18);
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 0 18px rgba(57, 255, 20, 0.45);
+    }
+
+    .ca-icon-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .ca-meta-details {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--text-body);
+    }
+
+    .ca-meta-details span strong {
+      color: #FFFFFF;
+    }
+
+    /* DexScreener Mini Widget */
+    .dex-stat-card {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      background: rgba(21, 26, 23, 0.9);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      padding: 12px 24px;
+      border-radius: var(--border-radius-pill);
+      font-size: 0.85rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .dex-stat-card .stat-val {
+      font-family: var(--font-pixel);
+      font-size: 0.8rem;
+      color: var(--primary);
+      margin-left: 6px;
+    }
+
+    /* ==========================================================================
+       CARDS SYSTEM (UPDATES, GAMEFI, STAKING, HOW TO BUY)
+       ========================================================================== */
+    .section-padding {
+      padding: 100px 0;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--border-radius-card);
+      padding: 32px 26px;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .card:hover {
+      border-color: rgba(57, 255, 20, 0.6);
+      transform: translateY(-6px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(57, 255, 20, 0.25);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      font-family: var(--font-pixel);
+      font-size: 0.55rem;
+      padding: 5px 12px;
+      border-radius: var(--border-radius-pill);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-badge.badge-green {
+      background: rgba(57, 255, 20, 0.15);
+      color: var(--primary);
+      border-color: rgba(57, 255, 20, 0.4);
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(57, 255, 20, 0.12);
+      border: 1.5px solid rgba(57, 255, 20, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      margin-bottom: 22px;
+      box-shadow: 0 0 15px rgba(57, 255, 20, 0.15);
+    }
+
+    .card-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    .card-title {
+      font-family: var(--font-pixel);
+      font-size: 1rem;
+      color: var(--text-head);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .card-desc {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      line-height: 1.6;
+      margin-top: auto;
+    }
+
+    /* Staking card */
+    .staking-card {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 44px 36px;
+    }
+
+    .staking-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 30px 0;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .stat-number {
+      font-family: var(--font-pixel);
+      font-size: 1.25rem;
+      color: var(--primary);
+      text-shadow: 0 0 12px rgba(57, 255, 20, 0.4);
+    }
+
+    /* Interactive GameFi Clicker Challenge */
+    .burn-simulator-btn {
+      margin-top: 18px;
+      background: rgba(57, 255, 20, 0.12);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      padding: 10px 16px;
+      border-radius: var(--border-radius-pill);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .burn-simulator-btn:hover {
+      background: var(--primary);
+      color: #000;
+      box-shadow: 0 0 15px var(--primary);
+    }
+
+    /* Socials Section */
+    .section-socials {
+      background: var(--bg-alt);
+      text-align: center;
+    }
+
+    .socials-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .social-big-btn {
+      flex: 1 1 200px;
+      background: var(--bg-card);
+      border: 1.5px solid rgba(57, 255, 20, 0.2);
+      border-radius: var(--border-radius-card);
+      padding: 26px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.25s ease;
+      color: var(--text-head);
+    }
+
+    .social-big-btn:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.65), 0 0 22px rgba(57, 255, 20, 0.35);
+      color: var(--primary);
+    }
+
+    .social-big-btn svg {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+
+    .social-big-title {
+      font-family: var(--font-pixel);
+      font-size: 0.8rem;
+    }
+
+    .social-big-handle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Interactive Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-box {
+      background: #111613;
+      border: 2px solid var(--primary);
+      border-radius: 24px;
+      padding: 32px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(57, 255, 20, 0.35);
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--primary);
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer {
+      background: #060706;
+      border-top: 1px solid rgba(57, 255, 20, 0.18);
+      padding: 65px 0 35px 0;
+      text-align: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-pixel);
+      font-size: 1.15rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+    }
+
+    .footer-disclaimer {
+      max-width: 680px;
+      margin: 0 auto 25px auto;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-copyright {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Sound indicator in nav */
+    .sound-toggle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-head);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sound-toggle-btn.sound-on {
+      border-color: var(--primary);
+      color: var(--primary);
+      box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .floating-mascot {
+        width: 120px;
+        opacity: 0.5;
+      }
+      .about-grid {
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-actions .icon-btn-round, .sound-toggle-btn {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .nav-pill {
+        padding: 6px 14px;
+      }
+      .floating-mascot {
+        display: none;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .about-text-col {
+        align-items: center;
+        order: 2;
+      }
+      .about-image-col {
+        order: 1;
+        margin-bottom: 1.5rem;
+      }
+      .about-text-col .section-title {
+        text-align: center;
+      }
+      .ca-pill-bar {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 18px 14px;
+        text-align: center;
+      }
+      .ca-label-wrapper {
+        flex-direction: column;
+        width: 100%;
+      }
+      .ca-address {
+        width: 100%;
+        text-align: center;
+      }
+      .btn-copy {
+        width: 100%;
+        margin-top: 10px;
+      }
+      .hero {
+        min-height: 85vh;
+        padding-top: 110px;
+      }
+    }
+
+    /* ==========================================================================
+       COLLAB RADAR BANNER & CARDS
+       ========================================================================== */
+    .collab-radar-banner {
+      background: linear-gradient(135deg, rgba(21, 26, 23, 0.95), rgba(15, 18, 16, 0.98));
+      border: 1.5px solid rgba(57, 255, 20, 0.4);
+      box-shadow: 0 0 30px rgba(57, 255, 20, 0.15), inset 0 0 20px rgba(57, 255, 20, 0.05);
+      border-radius: var(--border-radius-card);
+      padding: 36px 32px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .collab-radar-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(57, 255, 20, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .radar-pulse-ring {
+      position: relative;
+      width: 76px;
+      height: 76px;
+      min-width: 76px;
+      border-radius: 50%;
+      background: rgba(57, 255, 20, 0.08);
+      border: 1.5px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+    }
+
+    .radar-pulse-ring::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 1.5px solid var(--primary);
+      animation: radarPulse 2s ease-out infinite;
+    }
+
+    @keyframes radarPulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1.6);
+        opacity: 0;
+      }
+    }
+
+    .radar-pulse-ring svg {
+      width: 36px;
+      height: 36px;
+      fill: var(--primary);
+      animation: rotateRadar 8s linear infinite;
+    }
+
+    @keyframes rotateRadar {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .radar-content {
+      flex: 1;
+    }
+
+    .radar-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      color: var(--primary);
+      background: rgba(57, 255, 20, 0.12);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      border-radius: var(--border-radius-pill);
+      padding: 4px 12px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .radar-tag .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--primary);
+      animation: blinkDot 1s infinite alternate;
+    }
+
+    @keyframes blinkDot {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+
+    .radar-title {
+      font-family: var(--font-pixel);
+      font-size: 1.15rem;
+      color: var(--text-head);
+      margin-bottom: 10px;
+      line-height: 1.4;
+      text-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+    }
+
+    .radar-text {
+      color: var(--text-body);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 780px;
+    }
+
+    @media (max-width: 768px) {
+      .collab-radar-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 20px;
+        gap: 20px;
+      }
+      .radar-pulse-ring {
+        margin: 0 auto;
+      }
+      .radar-title {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient rising ember sparks canvas -->
+  <canvas id="emberCanvas"></canvas>
+
+  <!-- ==========================================================================
+       1. FLOATING PILL NAVBAR
+       ========================================================================== -->
+  <header class="nav-wrapper">
+    <nav aria-label="Main Navigation" class="nav-pill">
+      <a aria-label="Torchy Homepage" class="nav-brand" href="#">
+        <div class="nav-brand-icon">
+          <img alt="TORCHY" height="36" src="images/logo.webp" width="36"/>
+        </div>
+        <span class="nav-brand-text">TORCHY</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#ca">CA</a></li>
+        <li><a href="#updates">Updates</a></li>
+        <li><a href="#gamefi">GameFi</a></li>
+        <li><a href="#staking">Staking</a></li>
+        <li><a href="#socials">Socials</a></li>
+      </ul>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <!-- 8-Bit Audio Sound FX Toggle -->
+        <button id="soundToggle" class="sound-toggle-btn sound-on" aria-label="Toggle retro sound effects" title="Toggle 8-bit sound fx">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+          </svg>
+        </button>
+
+        <a aria-label="Torchy on X" class="icon-btn-round" href="https://x.com/torchylabs" rel="noopener noreferrer" target="_blank" title="X (Twitter)">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+        </a>
+        <a aria-label="Torchy Telegram" class="icon-btn-round" href="https://t.me/torchyyylabs" rel="noopener noreferrer" target="_blank" title="Telegram">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path></svg>
+        </a>
+        <a class="btn-buy-nav" href="https://app.torchpad.fun/trade/robinhood/0x701d277984550745df2a53dcc15079cc1e2d1111" rel="noopener noreferrer" target="_blank">BUY TORCHY</a>
+
+        <!-- Hamburger Menu Button -->
+        <button aria-expanded="false" aria-label="Toggle navigation menu" class="mobile-menu-btn" id="mobileMenuBtn">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Mobile Dropdown -->
+      <div class="mobile-dropdown" id="mobileDropdown">
+        <ul>
+          <li><a class="mobile-nav-link" href="#about">About</a></li>
+          <li><a class="mobile-nav-link" href="#ca">CA</a></li>
+          <li><a class="mobile-nav-link" href="#updates">Updates</a></li>
+          <li><a class="mobile-nav-link" href="#gamefi">GameFi</a></li>
+          <li><a class="mobile-nav-link" href="#staking">Staking</a></li>
+          <li><a class="mobile-nav-link" href="#socials">Socials</a></li>
+        </ul>
+        <div class="mobile-socials">
+          <a aria-label="X" class="icon-btn-round" href="https://x.com/torchylabs" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+          <a aria-label="Telegram" class="icon-btn-round" href="https://t.me/torchyyylabs" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path></svg></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==========================================================================
+       2. HERO SECTION
+       ========================================================================== -->
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-bg">
+        <video autoplay loop muted playsinline poster="images/hero.webp" aria-hidden="true">
+          <source src="images/cape_animation.mp4" type="video/mp4" />
+          <img alt="TORCHY Mascot Hero Illustration" decoding="async" fetchpriority="high" height="1080" src="images/hero.webp" width="1920"/>
+        </video>
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content">
+        <h1 class="hero-title">TORC<span>HY</span></h1>
+        <p class="hero-subtitle">Official Mascot of @torchpaddotfun — Torchy is here to stay! 🗽🔥</p>
+        <p class="hero-line">First runner. First graduated token. The flame that never dies.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="https://app.torchpad.fun/trade/robinhood/0x701d277984550745df2a53dcc15079cc1e2d1111" rel="noopener noreferrer" target="_blank">
+            <span>BUY $TORCHY</span>
+          </a>
+          <a class="btn btn-secondary" href="https://t.me/torchyyylabs" rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path></svg>
+            <span>Join Telegram</span>
+          </a>
+          <a class="btn btn-secondary" href="https://x.com/torchylabs" rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            <span>Follow on X</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. TICKER MARQUEE BAND #1 (PURE CSS)
+         ========================================================================== -->
+    <div aria-hidden="true" class="marquee-container">
+      <div class="marquee-track">
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+      </div>
+      <div class="marquee-track">
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         4. ABOUT SECTION ("MEET TORCHY")
+         ========================================================================== -->
+    <section class="section-about" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <!-- Text Column -->
+          <div class="about-text-col">
+            <h2 class="section-title">MEET TORCHY</h2>
+            <p class="about-lead">
+              Torchy is the official mascot of the Torch Launchpad on Robinhood Chain. Not just a meme — Torchy is utility-focused and tied directly into the Torch ecosystem.
+            </p>
+            <p class="about-desc">
+              It was the first token to graduate on @Torchpaddotfun and remains the community's flagship. The flame keeps burning. The community keeps building.
+            </p>
+            <div class="about-buttons">
+              <a class="btn btn-primary" href="https://app.torchpad.fun/trade/robinhood/0x701d277984550745df2a53dcc15079cc1e2d1111" rel="noopener noreferrer" target="_blank">
+                BUY TORCHY
+              </a>
+              <a class="btn btn-secondary" href="https://dexscreener.com" rel="noopener noreferrer" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                DEX SCREENER
+              </a>
+            </div>
+          </div>
+
+          <!-- Image Column with Mascot cutout -->
+          <div class="about-image-col">
+            <div class="about-image-frame">
+              <img alt="Torchy Character Art" decoding="async" height="500" loading="lazy" src="images/torchy-about.webp" width="500"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. CONTRACT SECTION
+         ========================================================================== -->
+    <section class="section-ca" id="ca">
+      <!-- Floating Decorative Mascots with transparent PNGs -->
+      <img alt="Torchy floating flame" class="floating-mascot left pixel-art" decoding="async" height="200" loading="lazy" src="images/torchy-left.png" width="200"/>
+      <img alt="Torchy floating flame" class="floating-mascot right pixel-art" decoding="async" height="200" loading="lazy" src="images/torchy-right.png" width="200"/>
+
+      <div class="container">
+        <div class="ca-box-container">
+          <h2 class="section-title">CONTRACT</h2>
+          <p class="section-subtitle">Official verified token contract on Robinhood Chain</p>
+
+          <!-- Monospace CA bar -->
+          <div class="ca-pill-bar">
+            <div class="ca-label-wrapper">
+              <span class="ca-tag">CA:</span>
+              <span class="ca-address" id="caText">0x701D277984550745Df2A53dcc15079cc1e2d1111</span>
+            </div>
+            <button aria-label="Copy Contract Address" class="btn-copy" id="btnCopyCA">
+              Copy
+            </button>
+          </div>
+
+          <!-- Social Icon Buttons Row -->
+          <div class="ca-social-row">
+            <a aria-label="X Account" class="ca-icon-btn" href="https://x.com/torchylabs" rel="noopener noreferrer" target="_blank" title="X (Twitter)">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            </a>
+            <a aria-label="Telegram Community" class="ca-icon-btn" href="https://t.me/torchyyylabs" rel="noopener noreferrer" target="_blank" title="Telegram">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path></svg>
+            </a>
+            <a aria-label="Torchpad" class="ca-icon-btn" href="https://app.torchpad.fun" rel="noopener noreferrer" target="_blank" title="Torchpad">
+              <svg viewBox="0 0 24 24"><path d="M13.13 2.21a.75.75 0 00-1.26 0l-9 16A.75.75 0 003.5 19.5h17a.75.75 0 00.63-1.16l-8-14.13zM12 6.36L17.7 16.5H6.3L12 6.36z"></path></svg>
+            </a>
+            <a aria-label="Torch Documentation" class="ca-icon-btn" href="https://docs.torchpad.fun" rel="noopener noreferrer" target="_blank" title="Docs">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path></svg>
+            </a>
+            <a aria-label="DexScreener Chart" class="ca-icon-btn" href="https://dexscreener.com" rel="noopener noreferrer" target="_blank" title="DexScreener">
+              <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"></path></svg>
+            </a>
+          </div>
+
+          <div class="ca-meta-details">
+            <span>Network: <strong>Robinhood Chain</strong></span>
+            <span>Trade on: <strong>app.torchpad.fun</strong></span>
+            <span>Audit: <strong>DexScreener & Explorers</strong></span>
+          </div>
+
+          <!-- DexScreener Mini Widget -->
+          <div class="dex-stat-card" id="dexWidget">
+            <span>Live Price: <span class="stat-val" id="dexPrice">$0.000037</span></span>
+            <span>Market Cap: <span class="stat-val" id="dexMcap">$37,222</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. TICKER MARQUEE BAND #2 (SKEWED)
+         ========================================================================== -->
+    <div aria-hidden="true" class="marquee-container skewed">
+      <div class="marquee-track">
+        <span class="marquee-item">FIRST GRADUATED TOKEN <span class="marquee-flame">🗽</span></span>
+        <span class="marquee-item">ROBINHOOD CHAIN <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">TORCHPAD FLAGSHIP <span class="marquee-flame">⚡</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">THE FLAME NEVER DIES <span class="marquee-flame">🚀</span></span>
+      </div>
+      <div class="marquee-track">
+        <span class="marquee-item">FIRST GRADUATED TOKEN <span class="marquee-flame">🗽</span></span>
+        <span class="marquee-item">ROBINHOOD CHAIN <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">TORCHPAD FLAGSHIP <span class="marquee-flame">⚡</span></span>
+        <span class="marquee-item">$TORCHY <span class="marquee-flame">🔥</span></span>
+        <span class="marquee-item">THE FLAME NEVER DIES <span class="marquee-flame">🚀</span></span>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         7. UPDATES SECTION
+         ========================================================================== -->
+    <section class="section-padding" id="updates">
+      <div class="container">
+        <h2 class="section-title">UPDATES</h2>
+        <p class="section-subtitle">Real progress. On-chain milestones and ecosystem growth.</p>
+        <div class="cards-grid" id="updatesContainer">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ==========================================================================
+         9. GAMEFI SECTION ("COMING SOON")
+         ========================================================================== -->
+    <section class="section-padding" id="gamefi" style="background: var(--bg-alt);">
+      <div class="container">
+        <h2 class="section-title">GAMEFI</h2>
+        <p class="section-subtitle">
+          Torchy games, burn challenges, and on-chain activities are in development. Stay tuned for pixel-style minigames, community events, and ways to interact with the flame.
+        </p>
+
+        <div class="cards-grid">
+          <!-- Teaser 1 -->
+          <div class="card">
+            <span class="card-badge">LOCKED</span>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path></svg>
+            </div>
+            <h3 class="card-title">FLAME RUNNER</h3>
+            <p class="card-desc">Endless pixel runner where Torchy dodges market dips, collects gas credits, and triggers token burns on high scores.</p>
+            <button class="burn-simulator-btn" onclick="openGameModal('Flame Runner', 'Control Torchy running through Robinhood Chain cyber highway! Dodge red dips, collect $TORCHY sparks, and rack up multiplier combos. Minigame release v1.0 arriving soon!')">Preview Demo</button>
+          </div>
+
+          <!-- Teaser 2 -->
+          <div class="card">
+            <span class="card-badge">INTERACTIVE</span>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 23c6.075 0 11-4.925 11-11 0-4.04-2.18-7.57-5.43-9.5-.39-.23-.88.08-.83.53.27 2.45-.63 4.97-2.74 6.72-2.15 1.79-3.2 4.54-2.73 7.25.07.41-.35.73-.72.56-1.54-.7-2.78-1.89-3.55-3.37-.2-.38-.76-.32-.88.09C4.42 16.66 7.74 23 12 23z"></path></svg>
+            </div>
+            <h3 class="card-title">BURN CHALLENGE</h3>
+            <p class="card-desc">Community furnace simulator. Click to feed the eternal flame and burn virtual test tokens to boost community heat!</p>
+            <button class="burn-simulator-btn" id="burnClickerBtn">Feed Flame (<span id="flameClicks">0</span> 🔥)</button>
+          </div>
+
+          <!-- Teaser 3 -->
+          <div class="card">
+            <span class="card-badge">LOCKED</span>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 3s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+            </div>
+            <h3 class="card-title">COMMUNITY QUESTS</h3>
+            <p class="card-desc">Social raiding and on-chain task rewards powered by Robinhood Chain speed and zero gas friction.</p>
+            <button class="burn-simulator-btn" onclick="openGameModal('Community Quests', 'Daily community raids, viral memes bounties, and DEX liquidity challenges with exclusive retro badges!')">Quest Overview</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         9. STAKING SECTION
+         ========================================================================== -->
+    <section class="section-padding" id="staking">
+      <div class="container">
+        <h2 class="section-title">STAKING</h2>
+        <p class="section-subtitle">
+          Details coming soon. Hold $TORCHY and stay close — utilities and reward mechanisms are part of the long-term plan.
+        </p>
+
+        <div class="card staking-card">
+          <span class="card-badge badge-green">VAULT PROTOCOL</span>
+          <h3 class="card-title" style="margin-top: 15px;">TORCHY COMBUSTION POOL</h3>
+          <p class="card-desc">Lock $TORCHY to unlock tiered platform fee shares and ecosystem multiplier bonuses.</p>
+          <div class="staking-stats">
+            <div>
+              <div class="stat-label">Projected APR</div>
+              <div class="stat-number">48.5%</div>
+            </div>
+            <div>
+              <div class="stat-label">Pool Target</div>
+              <div class="stat-number">10M</div>
+            </div>
+            <div>
+              <div class="stat-label">Status</div>
+              <div class="stat-number">AUDIT</div>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="width: 100%;" onclick="openGameModal('Combustion Staking Vault', 'Smart contract vault is currently undergoing security audits. Stakers will earn yield generated from ecosystem volume and launchpad allocations. Get notified on launch by joining our Telegram!')">
+            GET NOTIFIED AT LAUNCH
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         10. SOCIALS SECTION ("JOIN THE FLAME")
+         ========================================================================== -->
+    <section class="section-padding section-socials" id="socials">
+      <div class="container">
+        <h2 class="section-title">JOIN THE FLAME</h2>
+        <p class="section-subtitle">Connect with the official Torchy community and keep the ecosystem fire lit.</p>
+
+        <div class="socials-grid">
+          <a class="social-big-btn" href="https://x.com/torchylabs" rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            <span class="social-big-title">OFFICIAL X</span>
+            <span class="social-big-handle">@torchylabs</span>
+          </a>
+
+          <a class="social-big-btn" href="https://t.me/torchyyylabs" rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path></svg>
+            <span class="social-big-title">TELEGRAM</span>
+            <span class="social-big-handle">@torchyyylabs</span>
+          </a>
+
+          <a class="social-big-btn" href="https://app.torchpad.fun" rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M13.13 2.21a.75.75 0 00-1.26 0l-9 16A.75.75 0 003.5 19.5h17a.75.75 0 00.63-1.16l-8-14.13zM12 6.36L17.7 16.5H6.3L12 6.36z"></path></svg>
+            <span class="social-big-title">TORCHPAD</span>
+            <span class="social-big-handle">app.torchpad.fun</span>
+          </a>
+
+          <a class="social-big-btn" href="https://docs.torchpad.fun" rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path></svg>
+            <span class="social-big-title">DOCS</span>
+            <span class="social-big-handle">docs.torchpad.fun</span>
+          </a>
+
+          <a class="social-big-btn" href="https://x.com/Torchpaddotfun" rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            <span class="social-big-title">TORCH X</span>
+            <span class="social-big-handle">@Torchpaddotfun</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       MODAL DIALOG FOR PREVIEWS
+       ========================================================================== -->
+  <div class="modal-backdrop" id="infoModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      <h3 class="section-title" id="modalTitle" style="font-size: 1.25rem; margin-bottom: 1rem;">FEATURE</h3>
+      <p id="modalDesc" style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;"></p>
+      <button class="btn btn-primary" onclick="closeModal()" style="width: 100%;">LET'S GO</button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       11. FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <span>🔥</span> TORCHY
+      </div>
+      <p class="footer-disclaimer">
+        Torchy is a meme/community token. Not financial advice. DYOR. High risk. Only risk what you can afford to lose.
+      </p>
+      <div class="footer-copyright">
+        © 2026 Torchy. All rights reserved. On Robinhood Chain.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. UPDATES DATA ARRAY
+      const updatesData = [
+        {
+          badge: "MILESTONE #1",
+          title: "FIRST GRADUATE",
+          desc: "First token to ever graduate on Torch Launchpad, proving the community-driven launch model."
+        },
+        {
+          badge: "TREASURY & LP",
+          title: "DEX LIQUIDITY",
+          desc: "59.3% of supply added to liquidity by default by torchpad with almost a 1.33:1 - MC: Liquidity ratio making the pair very liquid"
+        },
+        {
+          badge: "ROADMAP",
+          title: "UTILITIES EXPANSION",
+          desc: "Ecosystem utilities, staking vaults, and burn mechanics entering smart contract audit."
+        },
+        {
+          badge: "FLAGSHIP",
+          title: "#1 MASCOT SPOT",
+          desc: "$TORCHY firmly holds the official mascot throne as the torchbearer of @torchpaddotfun."
+        },
+        {
+          id: "collabs",
+          badge: "RADAR DETECTED",
+          title: "BIG COLLABS",
+          desc: "Massive ecosystem collaborations, strategic Robinhood Chain alliances, and premier Web3 partnerships actively locking in. Confidential discussions in progress — big announcements drop soon!",
+          icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S7.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>'
+        },
+        {
+          badge: "COMING SOON",
+          title: "NFT COLLECTION",
+          desc: "Exclusive Genesis Torchy pixel NFT collection with dynamic staking multipliers, ecosystem whitelist access, and future GameFi character power-ups.",
+          icon: '<svg viewBox="0 0 24 24"><path d="M12 2L2 9l10 13 10-13L12 2zm0 3.5l6.5 4.5H5.5L12 5.5zM4.7 11.5h14.6L12 19.8 4.7 11.5z"/></svg>'
+        }
+      ];
+
+      // Render Updates Cards
+      const container = document.getElementById('updatesContainer');
+      if (container) {
+        container.innerHTML = updatesData.map(item => `
+          <div class="card" ${item.id ? `id="${item.id}"` : ''}>
+            <span class="card-badge badge-green">${item.badge}</span>
+            <div class="card-icon">
+              ${item.icon || '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'}
+            </div>
+            <h3 class="card-title">${item.title}</h3>
+            <p class="card-desc">${item.desc}</p>
+          </div>
+        `).join('');
+      }
+
+      // 2. SYNTHESIZED 8-BIT AUDIO SYSTEM (Web Audio API)
+      let soundEnabled = true;
+      let audioCtx = null;
+
+      function getAudioContext() {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        return audioCtx;
+      }
+
+      function playRetroSound(type) {
+        if (!soundEnabled) return;
+        try {
+          const ctx = getAudioContext();
+          if (ctx.state === 'suspended') {
+            ctx.resume();
+          }
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+
+          const now = ctx.currentTime;
+
+          if (type === 'click') {
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(440, now);
+            osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+            gain.gain.setValueAtTime(0.08, now);
+            gain.gain.linearRampToValueAtTime(0, now + 0.08);
+            osc.start(now);
+            osc.stop(now + 0.08);
+          } else if (type === 'copy') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(523.25, now);
+            osc.frequency.setValueAtTime(659.25, now + 0.06);
+            osc.frequency.setValueAtTime(783.99, now + 0.12);
+            gain.gain.setValueAtTime(0.12, now);
+            gain.gain.linearRampToValueAtTime(0, now + 0.22);
+            osc.start(now);
+            osc.stop(now + 0.22);
+          } else if (type === 'burn') {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(280, now);
+            osc.frequency.exponentialRampToValueAtTime(600, now + 0.12);
+            gain.gain.setValueAtTime(0.1, now);
+            gain.gain.linearRampToValueAtTime(0, now + 0.12);
+            osc.start(now);
+            osc.stop(now + 0.12);
+          }
+        } catch (e) {
+          // Audio fallback silent
+        }
+      }
+
+      const soundBtn = document.getElementById('soundToggle');
+      if (soundBtn) {
+        soundBtn.addEventListener('click', () => {
+          soundEnabled = !soundEnabled;
+          soundBtn.classList.toggle('sound-on', soundEnabled);
+          if (soundEnabled) playRetroSound('click');
+        });
+      }
+
+      // Add audio feedback to all buttons and links
+      document.querySelectorAll('.btn, .icon-btn-round, .ca-icon-btn, .social-big-btn').forEach(el => {
+        el.addEventListener('click', () => playRetroSound('click'));
+      });
+
+      // 3. COPY CONTRACT ADDRESS
+      const copyBtn = document.getElementById('btnCopyCA');
+      const caTextElem = document.getElementById('caText');
+      if (copyBtn && caTextElem) {
+        copyBtn.addEventListener('click', async () => {
+          const address = caTextElem.textContent.trim();
+          playRetroSound('copy');
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(address);
+            } else {
+              const textArea = document.createElement("textarea");
+              textArea.value = address;
+              textArea.style.position = "fixed";
+              textArea.style.left = "-999999px";
+              document.body.appendChild(textArea);
+              textArea.focus();
+              textArea.select();
+              document.execCommand('copy');
+              textArea.remove();
+            }
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = 'Copied!';
+            copyBtn.classList.add('copied');
+            setTimeout(() => {
+              copyBtn.textContent = originalText;
+              copyBtn.classList.remove('copied');
+            }, 1600);
+          } catch (err) {
+            console.error('Failed to copy CA: ', err);
+          }
+        });
+      }
+
+      // 4. MOBILE MENU DROPDOWN
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileDropdown');
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => {
+          playRetroSound('click');
+          const isOpen = mobileMenu.classList.toggle('open');
+          mobileBtn.setAttribute('aria-expanded', isOpen);
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            mobileBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // 5. ACTIVE NAV HIGHLIGHT
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-links a');
+
+      if ('IntersectionObserver' in window && sections.length && navLinks.length) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              navLinks.forEach(link => {
+                if (link.getAttribute('href') === `#${id}`) {
+                  link.classList.add('active');
+                } else {
+                  link.classList.remove('active');
+                }
+              });
+            }
+          });
+        }, {
+          rootMargin: '-30% 0px -60% 0px',
+          threshold: 0
+        });
+
+        sections.forEach(sec => observer.observe(sec));
+      }
+
+      // 6. LIVE DEX DATA
+      async function fetchDexStats() {
+        const ca = "0x701D277984550745Df2A53dcc15079cc1e2d1111";
+        const priceEl = document.getElementById('dexPrice');
+        const mcapEl = document.getElementById('dexMcap');
+
+        try {
+          const res = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${ca}`);
+          if (!res.ok) throw new Error('API request failed');
+          const data = await res.json();
+          if (data && data.pairs && data.pairs.length > 0) {
+            const pair = data.pairs[0];
+            if (priceEl && pair.priceUsd) {
+              priceEl.textContent = `$${parseFloat(pair.priceUsd).toFixed(6)}`;
+            }
+            if (mcapEl && (pair.fdv || pair.marketCap)) {
+              const mcap = pair.marketCap || pair.fdv;
+              mcapEl.textContent = `$${Number(mcap).toLocaleString()}`;
+            }
+          }
+        } catch (e) {
+          // Keep calibrated initial placeholders
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', fetchDexStats);
+
+      // 7. INTERACTIVE BURN SIMULATOR CLICKER
+      let flameCount = 0;
+      const burnBtn = document.getElementById('burnClickerBtn');
+      const clicksEl = document.getElementById('flameClicks');
+      if (burnBtn && clicksEl) {
+        burnBtn.addEventListener('click', () => {
+          flameCount += 50;
+          clicksEl.textContent = flameCount.toLocaleString();
+          playRetroSound('burn');
+
+          // Spawn a floating flame emoji
+          const rect = burnBtn.getBoundingClientRect();
+          const spark = document.createElement('div');
+          spark.textContent = '🔥';
+          spark.style.position = 'fixed';
+          spark.style.left = `${rect.left + rect.width / 2 + (Math.random() * 40 - 20)}px`;
+          spark.style.top = `${rect.top}px`;
+          spark.style.fontSize = '24px';
+          spark.style.pointerEvents = 'none';
+          spark.style.zIndex = '9999';
+          spark.style.transition = 'all 0.8s ease-out';
+          document.body.appendChild(spark);
+
+          requestAnimationFrame(() => {
+            spark.style.transform = `translateY(-60px) scale(1.4)`;
+            spark.style.opacity = '0';
+          });
+          setTimeout(() => spark.remove(), 800);
+        });
+      }
+
+      // 8. RISING EMBER PARTICLES CANVAS
+      const canvas = document.getElementById('emberCanvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        });
+
+        const particles = [];
+        const maxParticles = 45;
+
+        for (let i = 0; i < maxParticles; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            size: Math.random() * 3.5 + 1.5,
+            speedY: Math.random() * 0.9 + 0.4,
+            speedX: (Math.random() - 0.5) * 0.6,
+            alpha: Math.random() * 0.7 + 0.2
+          });
+        }
+
+        function renderEmbers() {
+          ctx.clearRect(0, 0, width, height);
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.y -= p.speedY;
+            p.x += p.speedX;
+
+            if (p.y < 0) {
+              p.y = height + 10;
+              p.x = Math.random() * width;
+            }
+
+            ctx.fillStyle = `rgba(57, 255, 20, ${p.alpha})`;
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = '#39FF14';
+            ctx.fillRect(p.x, p.y, p.size, p.size);
+          }
+          requestAnimationFrame(renderEmbers);
+        }
+        renderEmbers();
+      }
+
+      // 9. MODAL HANDLERS
+      window.openGameModal = function(title, desc) {
+        playRetroSound('click');
+        const modal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        if (modal && modalTitle && modalDesc) {
+          modalTitle.textContent = title;
+          modalDesc.textContent = desc;
+          modal.classList.add('open');
+        }
+      };
+
+      window.closeModal = function() {
+        playRetroSound('click');
+        const modal = document.getElementById('infoModal');
+        if (modal) modal.classList.remove('open');
+      };
+
+      // Close modal on outside click
+      const modal = document.getElementById('infoModal');
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+      // ==========================================================================
+      // SECURITY & ANTI-TAMPER SHIELD
+      // ==========================================================================
+
+      // 1. Disable Right-Click Context Menu
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        return false;
+      }, { passive: false });
+
+      // 2. Block Inspection, View Source, and DevTools Shortcuts
+      document.addEventListener('keydown', function (e) {
+        // F12 key
+        if (e.key === 'F12' || e.keyCode === 123) {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C / Cmd+Option+I / Cmd+Option+J / Cmd+Option+C
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+U / Cmd+Opt+U (View Source)
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U')) {
+          e.preventDefault();
+          return false;
+        }
+        // Ctrl+S / Cmd+S (Save Page)
+        if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+          e.preventDefault();
+          return false;
+        }
+      }, { passive: false });
+
+      // 3. Disable Asset Drag & Drop
+      document.addEventListener('dragstart', function (e) {
+        e.preventDefault();
+        return false;
+      }, { passive: false });
+
+      // 4. Freeze Core Objects Against Prototype Pollution & Script Tampering
+      try {
+        Object.freeze(updatesData);
+      } catch (err) {}
+
+      // 5. Console Self-XSS Security Warning
+      try {
+        console.clear();
+        console.log(
+          '%c🛑 SECURITY SHIELD ACTIVE!',
+          'color:#39FF14; background:#000; font-size:22px; font-weight:bold; padding:8px 16px; border:2px solid #39FF14; border-radius:8px;'
+        );
+        console.log(
+          '%cThis browser feature is intended for developers. Pasting scripts or attempting injection here will be blocked.',
+          'color:#ff4444; font-size:14px; font-weight:bold;'
+        );
+      } catch (err) {}
+    })();
+  </script>
+</body>
+</html>
