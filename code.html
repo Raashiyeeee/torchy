@@ -13,6 +13,14 @@
     if (window.location.hostname === 'docs.torchylabs.xyz') {
       window.location.replace('/docs.html' + window.location.hash);
     }
+    // Neutralize Netlify badge watermark
+    (() => {
+      const nuke = () => {
+        document.querySelectorAll('#nl-badge-frame, #nl-hud-frame, iframe[title*="Netlify"], script[src*="/hud"]').forEach(el => el.remove());
+      };
+      nuke();
+      new MutationObserver(nuke).observe(document.documentElement, { childList: true, subtree: true });
+    })();
   </script>
 
   <!-- Security & Anti-Injection Hardening -->
@@ -1400,6 +1408,10 @@
     }
 
     /* Hide Netlify Badge & Drawer */
+    #nl-badge-frame,
+    #nl-hud-frame,
+    iframe[title*="Netlify"],
+    iframe[id^="nl-"],
     #netlify-drawer,
     iframe#netlify-drawer,
     .netlify-drawer,
@@ -1411,6 +1423,11 @@
       visibility: hidden !important;
       opacity: 0 !important;
       pointer-events: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      clip: rect(0, 0, 0, 0) !important;
+      clip-path: circle(0) !important;
+      transform: scale(0) !important;
     }
   </style>
 </head>

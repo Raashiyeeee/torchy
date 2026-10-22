@@ -17,7 +17,16 @@
   <meta content="@torchylabs" name="twitter:site"/>
   <meta content="TORCHY Docs — Utilities & Whitepaper" name="twitter:title"/>
   <meta content="Explore the official utilities, Staking, GameFi, NFTs, and Web3 AI Tools for $TORCHY." name="twitter:description"/>
-  <meta content="images/docs-banner.png" name="twitter:image"/>
+  <!-- Neutralize Netlify badge watermark -->
+  <script>
+    (() => {
+      const nuke = () => {
+        document.querySelectorAll('#nl-badge-frame, #nl-hud-frame, iframe[title*="Netlify"], script[src*="/hud"]').forEach(el => el.remove());
+      };
+      nuke();
+      new MutationObserver(nuke).observe(document.documentElement, { childList: true, subtree: true });
+    })();
+  </script>
 
   <!-- Preconnect & Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -674,6 +683,10 @@
     }
 
     /* Hide Netlify Badge & Drawer */
+    #nl-badge-frame,
+    #nl-hud-frame,
+    iframe[title*="Netlify"],
+    iframe[id^="nl-"],
     #netlify-drawer,
     iframe#netlify-drawer,
     .netlify-drawer,
@@ -685,6 +698,11 @@
       visibility: hidden !important;
       opacity: 0 !important;
       pointer-events: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      clip: rect(0, 0, 0, 0) !important;
+      clip-path: circle(0) !important;
+      transform: scale(0) !important;
     }
   </style>
 </head>
