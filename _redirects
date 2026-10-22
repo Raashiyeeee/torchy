@@ -1,0 +1,11 @@
+# Netlify Redirects for Torchy
+
+# Subdomain docs.torchylabs.xyz routes directly to docs.html
+https://docs.torchylabs.xyz/    /docs.html   200!
+https://docs.torchylabs.xyz/*   /docs.html   200!
+http://docs.torchylabs.xyz/     /docs.html   200!
+http://docs.torchylabs.xyz/*    /docs.html   200!
+
+# Folder path /docs routes to docs.html
+/docs                           /docs.html   200!
+/docs/*                         /docs.html   200!

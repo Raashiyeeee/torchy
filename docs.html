@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>TORCHY Docs — Utilities & Whitepaper | $TORCHY</title>
+  <meta content="Official Documentation, Whitepaper and Utilities roadmap for $TORCHY — Mascot of @torchpaddotfun on Robinhood Chain." name="description"/>
+  <meta content="#0A0A0A" name="theme-color"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <!-- Open Graph / Twitter -->
+  <meta content="website" property="og:type"/>
+  <meta content="TORCHY Docs — Utilities & Whitepaper" property="og:title"/>
+  <meta content="Utilities of $TORCHY - more than a meme or mascot. First graduated token on @torchpaddotfun." property="og:description"/>
+  <meta content="images/docs-banner.png" property="og:image"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="@torchylabs" name="twitter:site"/>
+  <meta content="TORCHY Docs — Utilities & Whitepaper" name="twitter:title"/>
+  <meta content="Explore the official utilities, Staking, GameFi, NFTs, and Web3 AI Tools for $TORCHY." name="twitter:description"/>
+  <meta content="images/docs-banner.png" name="twitter:image"/>
+
+  <!-- Preconnect & Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --bg-main: #0A0A0A;
+      --bg-alt: #0F1210;
+      --bg-card: #151A17;
+      --bg-card-hover: #1B221E;
+      --bg-card-border: rgba(57, 255, 20, 0.18);
+      --primary: #39FF14;
+      --primary-hover: #00FF88;
+      --primary-dim: rgba(57, 255, 20, 0.12);
+      --secondary: #00CC66;
+      --text-head: #FFFFFF;
+      --text-body: #A8B0AB;
+      --text-muted: #6B7570;
+      --font-pixel: 'Press Start 2P', monospace, sans-serif;
+      --font-accent: 'Silkscreen', monospace, sans-serif;
+      --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --glow-primary: 0 0 20px rgba(57, 255, 20, 0.4);
+      --glow-strong: 0 0 35px rgba(57, 255, 20, 0.7);
+      --nav-height: 72px;
+      --sidebar-width: 290px;
+      --border-radius-pill: 9999px;
+      --border-radius-card: 16px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-main);
+      color: var(--text-body);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      min-height: 100vh;
+      position: relative;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(57, 255, 20, 0.08) 0%, transparent 55%),
+        radial-gradient(circle at 95% 40%, rgba(0, 204, 102, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 10% 85%, rgba(57, 255, 20, 0.04) 0%, transparent 50%);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    /* ==========================================================================
+       HEADER / NAV
+       ========================================================================== */
+    .docs-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-height);
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--bg-card-border);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      justify-content: space-between;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #000;
+      border: 1px solid var(--primary);
+      box-shadow: 0 0 12px rgba(57, 255, 20, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .brand-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text {
+      font-family: var(--font-pixel);
+      font-size: 13px;
+      color: var(--text-head);
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-tag {
+      font-family: var(--font-accent);
+      font-size: 10px;
+      color: #000;
+      background: var(--primary);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-site-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(57, 255, 20, 0.08);
+      color: var(--primary);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      border-radius: var(--border-radius-pill);
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .btn-site-link:hover {
+      background: var(--primary);
+      color: #000;
+      box-shadow: var(--glow-primary);
+    }
+
+    .icon-social {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #141815;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-body);
+      transition: all 0.2s ease;
+    }
+    .icon-social:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      box-shadow: var(--glow-primary);
+      transform: translateY(-2px);
+    }
+    .icon-social svg {
+      width: 17px;
+      height: 17px;
+      fill: currentColor;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      border-radius: 8px;
+      color: var(--primary);
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ==========================================================================
+       DOCS LAYOUT
+       ========================================================================== */
+    .docs-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      min-height: calc(100vh - var(--nav-height));
+    }
+
+    /* Sidebar Navigation */
+    .docs-sidebar {
+      width: var(--sidebar-width);
+      position: sticky;
+      top: var(--nav-height);
+      height: calc(100vh - var(--nav-height));
+      overflow-y: auto;
+      padding: 28px 20px 40px 16px;
+      border-right: 1px solid var(--bg-card-border);
+      flex-shrink: 0;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(57, 255, 20, 0.2) transparent;
+    }
+
+    .sidebar-section {
+      margin-bottom: 24px;
+    }
+    .sidebar-title {
+      font-family: var(--font-accent);
+      font-size: 11px;
+      color: var(--primary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      padding-left: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sidebar-title svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--primary);
+      fill: none;
+      stroke-width: 2.2;
+    }
+    .sidebar-list {
+      list-style: none;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      color: var(--text-body);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      border-left: 2px solid transparent;
+    }
+    .sidebar-link:hover {
+      background: var(--bg-card);
+      color: #FFF;
+      border-left-color: var(--primary);
+      padding-left: 16px;
+    }
+    .sidebar-link.active {
+      background: rgba(57, 255, 20, 0.1);
+      color: var(--primary);
+      border-left-color: var(--primary);
+      font-weight: 700;
+    }
+    .sidebar-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--primary);
+    }
+    .sidebar-icon svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Main Docs Content */
+    .docs-content {
+      flex: 1;
+      padding: 36px 48px 80px 48px;
+      max-width: 900px;
+    }
+
+    /* Banner Image Box */
+    .docs-banner-wrap {
+      width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--bg-card-border);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(57, 255, 20, 0.2);
+      margin-bottom: 36px;
+      position: relative;
+      background: #000;
+    }
+    .docs-banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .docs-banner-wrap:hover .docs-banner-img {
+      transform: scale(1.015);
+    }
+
+    /* Badges & Meta */
+    .doc-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .badge-pill {
+      font-family: var(--font-accent);
+      font-size: 10px;
+      padding: 5px 12px;
+      border-radius: var(--border-radius-pill);
+      font-weight: 700;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge-pill svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+    .badge-green {
+      background: rgba(57, 255, 20, 0.12);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+    .badge-dark {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-body);
+    }
+
+    /* Typography */
+    .doc-main-title {
+      font-family: var(--font-pixel);
+      font-size: 26px;
+      line-height: 1.4;
+      color: var(--text-head);
+      margin-bottom: 16px;
+      text-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+    }
+    .doc-subtitle {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 24px;
+      letter-spacing: 0.2px;
+    }
+
+    .doc-lead-box {
+      background: linear-gradient(135deg, rgba(21, 26, 23, 0.95), rgba(15, 20, 17, 0.85));
+      border: 1px solid var(--bg-card-border);
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      padding: 24px 26px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    .doc-lead-box p {
+      font-size: 16px;
+      color: #D1D8D4;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .doc-lead-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Content Sections */
+    .doc-section {
+      margin-bottom: 48px;
+      scroll-margin-top: 100px;
+    }
+    .section-title {
+      font-family: var(--font-pixel);
+      font-size: 17px;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--bg-card-border);
+    }
+    .section-title span.icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      color: var(--primary);
+    }
+    .section-title span.icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Utility Cards Grid */
+    .utility-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 20px;
+      margin: 24px 0;
+    }
+    .utility-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--border-radius-card);
+      padding: 24px;
+      position: relative;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .utility-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(57, 255, 20, 0.15);
+    }
+    .utility-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .utility-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(57, 255, 20, 0.1);
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    .utility-icon-box svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+    .utility-name {
+      font-family: var(--font-accent);
+      font-size: 16px;
+      color: #FFF;
+      font-weight: 700;
+    }
+    .utility-badge {
+      margin-left: auto;
+      font-size: 10px;
+      background: rgba(57, 255, 20, 0.15);
+      color: var(--primary);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .utility-card p {
+      font-size: 15px;
+      color: var(--text-body);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .utility-footer {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Special Highlight Box (LP Note) */
+    .note-box {
+      background: rgba(255, 170, 0, 0.07);
+      border: 1px solid rgba(255, 170, 0, 0.3);
+      border-left: 4px solid #FFAA00;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 28px 0;
+    }
+    .note-title {
+      font-family: var(--font-accent);
+      font-size: 13px;
+      color: #FFAA00;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .note-title svg {
+      width: 18px;
+      height: 18px;
+      stroke: #FFAA00;
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+    .note-box p {
+      font-size: 14.5px;
+      color: #E2DDD5;
+      line-height: 1.65;
+    }
+
+    /* Contract Address Copy Box */
+    .ca-box {
+      background: #000;
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 24px 0;
+      box-shadow: 0 0 15px rgba(57, 255, 20, 0.15);
+    }
+    .ca-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow: hidden;
+    }
+    .ca-label {
+      font-family: var(--font-accent);
+      font-size: 11px;
+      background: var(--primary);
+      color: #000;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .ca-value {
+      font-family: monospace;
+      font-size: 14px;
+      color: #FFF;
+      word-break: break-all;
+    }
+    .btn-copy {
+      background: rgba(57, 255, 20, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: var(--font-accent);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-copy:hover {
+      background: var(--primary);
+      color: #000;
+      box-shadow: var(--glow-primary);
+    }
+    .btn-copy svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Footer in Docs */
+    .docs-footer {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid var(--bg-card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .torch-symbol {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Mobile Overlay */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+      z-index: 150;
+    }
+
+    /* ==========================================================================
+       RESPONSIVENESS
+       ========================================================================== */
+    @media (max-width: 960px) {
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+      .docs-sidebar {
+        position: fixed;
+        left: -100%;
+        top: var(--nav-height);
+        height: calc(100vh - var(--nav-height));
+        width: 280px;
+        background: #0D100E;
+        z-index: 200;
+        transition: left 0.3s ease;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
+      }
+      .docs-sidebar.open {
+        left: 0;
+      }
+      .sidebar-overlay.active {
+        display: block;
+      }
+      .docs-content {
+        padding: 24px 20px 60px 20px;
+      }
+      .doc-main-title {
+        font-size: 20px;
+      }
+      .utility-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       DOCS HEADER
+       ========================================================================== -->
+  <header class="docs-header">
+    <div class="brand-group">
+      <button class="mobile-menu-btn" id="mobileSidebarToggle" aria-label="Toggle navigation">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <a href="index.html" class="brand-logo-wrap" title="Back to Torchy Home">
+        <img src="images/logo.webp" alt="TORCHY" width="40" height="40" onerror="this.src='favicon.png'"/>
+      </a>
+      <div class="brand-text">
+        <a href="index.html" style="color: inherit; text-decoration: none;">TORCHY</a>
+        <span class="brand-tag">DOCS</span>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a href="index.html" class="btn-site-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Main Site
+      </a>
+      <a href="https://x.com/torchylabs" target="_blank" rel="noopener noreferrer" class="icon-social" title="X (Twitter)">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+      </a>
+      <a href="https://t.me/torchyyylabs" target="_blank" rel="noopener noreferrer" class="icon-social" title="Telegram">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path></svg>
+      </a>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ==========================================================================
+       MAIN WRAPPER WITH SIDEBAR
+       ========================================================================== -->
+  <div class="docs-container">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="docs-sidebar" id="docsSidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">
+          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          Overview
+        </div>
+        <ul class="sidebar-list">
+          <li>
+            <a href="#intro" class="sidebar-link active">
+              <span class="sidebar-icon">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </span>
+              Introduction
+            </a>
+          </li>
+          <li>
+            <a href="#contract" class="sidebar-link">
+              <span class="sidebar-icon">
+                <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              </span>
+              Contract Address
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Core Utilities
+        </div>
+        <ul class="sidebar-list">
+          <li>
+            <a href="#portal" class="sidebar-link">
+              <span class="sidebar-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </span>
+              Official Website
+            </a>
+          </li>
+          <li>
+            <a href="#staking" class="sidebar-link">
+              <span class="sidebar-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              </span>
+              Staking Vaults
+            </a>
+          </li>
+          <li>
+            <a href="#gamefi" class="sidebar-link">
+              <span class="sidebar-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"></rect><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line></svg>
+              </span>
+              GameFi & P2E
+            </a>
+          </li>
+          <li>
+            <a href="#nfts" class="sidebar-link">
+              <span class="sidebar-icon">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </span>
+              Torchy NFTs
+            </a>
+          </li>
+          <li>
+            <a href="#tools" class="sidebar-link">
+              <span class="sidebar-icon">
+                <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+              </span>
+              Web3 AI Tools
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Liquidity & Policy
+        </div>
+        <ul class="sidebar-list">
+          <li>
+            <a href="#lp-note" class="sidebar-link">
+              <span class="sidebar-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              </span>
+              LP Clarification
+            </a>
+          </li>
+          <li>
+            <a href="#roadmap" class="sidebar-link">
+              <span class="sidebar-icon">
+                <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+              </span>
+              The Future
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- RIGHT CONTENT AREA -->
+    <main class="docs-content">
+
+      <!-- BANNER IMAGE -->
+      <div class="docs-banner-wrap">
+        <img src="images/docs-banner.png" alt="Torchy Banner @torchpaddotfun" class="docs-banner-img"/>
+      </div>
+
+      <!-- BADGES -->
+      <div class="doc-badge-row">
+        <span class="badge-pill badge-green">
+          <svg viewBox="0 0 24 24"><path d="M12 2c1.5 3 4 5 4 8a4 4 0 0 1-8 0c0-3 2.5-5 4-8z"></path></svg>
+          OFFICIAL DOCUMENTATION
+        </span>
+        <span class="badge-pill badge-dark">ROBINHOOD CHAIN</span>
+        <span class="badge-pill badge-dark">FIRST GRADUATED RUNNER</span>
+      </div>
+
+      <!-- TITLE -->
+      <h1 class="doc-main-title" id="intro">Utilities of $TORCHY</h1>
+      <div class="doc-subtitle">More than a meme or mascot. The flame that never dies.</div>
+
+      <!-- INTRODUCTION STORY -->
+      <div class="doc-lead-box">
+        <p>
+          Okay so <strong>$TORCHY</strong> started off as the mascot of <a href="https://x.com/Torchpaddotfun" target="_blank" rel="noopener noreferrer">@Torchpaddotfun</a>. 
+          Torchy was used on the PnL share screen on the Telegram bot since almost the start and has been an integral part of the ecosystem from day one.
+        </p>
+        <p>
+          <strong>$TORCHY</strong> was the <strong>first ever token, meme, and runner to be graduated on @Torchpaddotfun</strong>. 
+          We wanted to make it more than just a meme or mascot on our personal whim tbh — the more the merrier right? <em>Hell yeah.</em>
+        </p>
+        <p>
+          Below are the official utilities, architecture, and roadmap items being engineered for the $TORCHY ecosystem.
+        </p>
+      </div>
+
+      <!-- CONTRACT ADDRESS BOX -->
+      <div class="doc-section" id="contract">
+        <div class="section-title">
+          <span class="icon">
+            <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          </span>
+          Official Contract Address (CA)
+        </div>
+        <div class="ca-box">
+          <div class="ca-left">
+            <span class="ca-label">CA</span>
+            <span class="ca-value" id="caText">0x701d277984550745df2a53dcc15079cc1e2d1111</span>
+          </div>
+          <button class="btn-copy" id="copyBtn" onclick="copyCA()">
+            <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span id="copyBtnLabel">COPY CA</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- UTILITIES SECTION -->
+      <div class="doc-section" id="utilities">
+        <div class="section-title">
+          <span class="icon">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </span>
+          The Utilities Architecture
+        </div>
+
+        <div class="utility-grid">
+          
+          <!-- Website -->
+          <div class="utility-card" id="portal">
+            <div class="utility-header">
+              <div class="utility-icon-box">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <div>
+                <div class="utility-name">Official Portal</div>
+              </div>
+              <span class="utility-badge">LIVE</span>
+            </div>
+            <p>
+              The official portal serves as the primary entrance to the entire Torchy ecosystem. A high-performance, hardened hub connecting traders, holders, and ecosystem users with real-time analytics, token statistics, and future dApps.
+            </p>
+            <div class="utility-footer">
+              <span>Status:</span> Entry point to the torchy ecosystem
+            </div>
+          </div>
+
+          <!-- Staking -->
+          <div class="utility-card" id="staking">
+            <div class="utility-header">
+              <div class="utility-icon-box">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              </div>
+              <div>
+                <div class="utility-name">Staking Vaults</div>
+              </div>
+              <span class="utility-badge">IN DEV</span>
+            </div>
+            <p>
+              Stake <strong>$TORCHY</strong> to earn <strong>$TORCHY</strong> over customizable staking periods with lucrative APR% yields. 
+              Future phases include multi-token staking vaults allowing holders to stake related assets like <strong>$TORCH</strong> and <strong>$ETH</strong>.
+            </p>
+            <div class="utility-footer">
+              <span>Status:</span> Launch Date TBA · Multi-Asset Vaults in Plan
+            </div>
+          </div>
+
+          <!-- GameFi -->
+          <div class="utility-card" id="gamefi">
+            <div class="utility-header">
+              <div class="utility-icon-box">
+                <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"></rect><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line></svg>
+              </div>
+              <div>
+                <div class="utility-name">GameFi & P2E</div>
+              </div>
+              <span class="utility-badge">UPCOMING</span>
+            </div>
+            <p>
+              Collaborating with a premier Web3 gaming studio <em>(hints are there if you like easter eggs)</em>. 
+              Introducing an addictive Play-to-Earn (P2E) title aimed at reviving the Web3 gaming meta while establishing a sustainable in-game earning economy that unifies multiple communities.
+            </p>
+            <div class="utility-footer">
+              <span>Status:</span> Studio Collaboration Locked In
+            </div>
+          </div>
+
+          <!-- NFTs -->
+          <div class="utility-card" id="nfts">
+            <div class="utility-header">
+              <div class="utility-icon-box">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <div>
+                <div class="utility-name">Torchy NFTs</div>
+              </div>
+              <span class="utility-badge">COLLECTION</span>
+            </div>
+            <p>
+              Exclusive $TORCHY NFT drops with diverse thematic collections like <strong>Pixelated Torchy</strong> and <strong>Galactic Torchy</strong>. 
+              Mintable via $TORCHY, $ETH, or $TORCH. Whitelist (WL), Guaranteed (GTD), and FCFS spots rewarded through niche community giveaways. 
+              Top holders of $TORCHY and $TORCH unlock guaranteed WL, free NFT airdrops, and revenue sharing from creator royalties.
+            </p>
+            <div class="utility-footer">
+              <span>Perks:</span> Creator Fee Airdrops & Top Holder Whitelists
+            </div>
+          </div>
+
+          <!-- Web3 Tools -->
+          <div class="utility-card" id="tools">
+            <div class="utility-header">
+              <div class="utility-icon-box">
+                <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+              </div>
+              <div>
+                <div class="utility-name">Web3 AI Suite</div>
+              </div>
+              <span class="utility-badge">AI AGENTS</span>
+            </div>
+            <p>
+              Proprietary Web3 automation tools native to <strong>@torchpaddotfun</strong>, including:
+              <br/>• <strong>AI Launchpad Intelligence Agent</strong>: Real-time discovery of promising graduated tokens.
+              <br/>• <strong>Token Risk & Rug Scanner</strong>: Instant on-chain safety verification.
+              <br/>• <strong>AI Chatbot & Market Analyser</strong>: Natural language trading insights.
+              <br/>Premium access tiers unlockable exclusively through $TORCHY.
+            </p>
+            <div class="utility-footer">
+              <span>Utility:</span> Token Utility & Premium Subscription Burn
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- LP CLARIFICATION NOTE -->
+      <div class="doc-section" id="lp-note">
+        <div class="section-title">
+          <span class="icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+          </span>
+          Liquidity & Pool Strategy
+        </div>
+        
+        <div class="note-box">
+          <div class="note-title">
+            <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            IMPORTANT LIQUIDITY POOL (LP) CLARIFICATION
+          </div>
+          <p>
+            <strong>$TORCHY / $TORCH LP plans have been intentionally set aside after thorough community & team discussions.</strong> 
+            Because $TORCHY is native to Torchpad, we already enjoy massive organic liquidity (with a 1.33:1 Market Cap to Liquidity ratio). 
+            Adding secondary LP pools would dilute liquidity distribution and undermine the primary pool. 
+            All trading remains concentrated on our ultra-liquid main pair.
+          </p>
+        </div>
+      </div>
+
+      <!-- ROADMAP WRAPPER -->
+      <div class="doc-section" id="roadmap">
+        <div class="section-title">
+          <span class="icon">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </span>
+          The Journey Ahead
+        </div>
+        
+        <div class="doc-lead-box" style="border-left-color: #00FF88;">
+          <p>
+            Currently this is the roadmap and utilities planned for <strong>$TORCHY</strong>. Stay tuned — y'all are in for an incredible ride.
+          </p>
+          <p style="font-size: 17px; font-weight: 800; color: #FFF; margin-top: 10px;">
+            As we told you from day one: <em>We aren't just a meme or mascot. We are the torchbearers of the Robinhood Chain.</em>
+          </p>
+          <p style="color: var(--primary); font-family: var(--font-pixel); font-size: 12px; margin-top: 14px;">
+            Cheers to the future torchmasters.
+          </p>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="docs-footer">
+        <div>
+          © 2026 <span class="torch-symbol">$TORCHY</span> · Official Mascot Token of <a href="https://x.com/Torchpaddotfun" target="_blank" rel="noopener noreferrer">@torchpaddotfun</a>
+        </div>
+        <div>
+          On Robinhood Chain
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    // Copy CA function
+    function copyCA() {
+      const text = document.getElementById('caText').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btnLabel = document.getElementById('copyBtnLabel');
+        btnLabel.innerText = 'COPIED!';
+        setTimeout(() => {
+          btnLabel.innerText = 'COPY CA';
+        }, 2000);
+      });
+    }
+
+    // Mobile sidebar toggle
+    const mobileBtn = document.getElementById('mobileSidebarToggle');
+    const sidebar = document.getElementById('docsSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    }
+
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', toggleSidebar);
+    }
+    if (overlay) {
+      overlay.addEventListener('click', toggleSidebar);
+    }
+
+    // Scroll spy for sidebar links
+    const links = document.querySelectorAll('.sidebar-link');
+    window.addEventListener('scroll', () => {
+      let fromTop = window.scrollY + 140;
+      links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          const section = document.querySelector(href);
+          if (section) {
+            if (
+              section.offsetTop <= fromTop &&
+              section.offsetTop + section.offsetHeight > fromTop
+            ) {
+              links.forEach(l => l.classList.remove('active'));
+              link.classList.add('active');
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -8,6 +8,13 @@
   <meta content="#0A0A0A" name="theme-color"/>
   <link rel="icon" type="image/png" href="favicon.png"/>
 
+  <!-- Subdomain Routing Guard -->
+  <script>
+    if (window.location.hostname === 'docs.torchylabs.xyz') {
+      window.location.replace('/docs.html' + window.location.hash);
+    }
+  </script>
+
   <!-- Security & Anti-Injection Hardening -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://api.dexscreener.com; object-src 'none'; base-uri 'self'; form-action 'self';"/>
   <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
@@ -1417,6 +1424,7 @@
         <li><a href="#updates">Updates</a></li>
         <li><a href="#gamefi">GameFi</a></li>
         <li><a href="#staking">Staking</a></li>
+        <li><a href="docs.html">Docs</a></li>
         <li><a href="#socials">Socials</a></li>
       </ul>
 
@@ -1451,6 +1459,7 @@
           <li><a class="mobile-nav-link" href="#updates">Updates</a></li>
           <li><a class="mobile-nav-link" href="#gamefi">GameFi</a></li>
           <li><a class="mobile-nav-link" href="#staking">Staking</a></li>
+          <li><a class="mobile-nav-link" href="docs.html">Docs</a></li>
           <li><a class="mobile-nav-link" href="#socials">Socials</a></li>
         </ul>
         <div class="mobile-socials">
@@ -1594,7 +1603,7 @@
             <a aria-label="Torchpad" class="ca-icon-btn" href="https://app.torchpad.fun" rel="noopener noreferrer" target="_blank" title="Torchpad">
               <svg viewBox="0 0 24 24"><path d="M13.13 2.21a.75.75 0 00-1.26 0l-9 16A.75.75 0 003.5 19.5h17a.75.75 0 00.63-1.16l-8-14.13zM12 6.36L17.7 16.5H6.3L12 6.36z"></path></svg>
             </a>
-            <a aria-label="Torch Documentation" class="ca-icon-btn" href="https://docs.torchpad.fun" rel="noopener noreferrer" target="_blank" title="Docs">
+            <a aria-label="Torchy Documentation" class="ca-icon-btn" href="https://docs.torchylabs.xyz" rel="noopener noreferrer" target="_blank" title="Torchy Docs">
               <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path></svg>
             </a>
             <a aria-label="DexScreener Chart" class="ca-icon-btn" href="https://dexscreener.com" rel="noopener noreferrer" target="_blank" title="DexScreener">
@@ -1761,10 +1770,10 @@
             <span class="social-big-handle">app.torchpad.fun</span>
           </a>
 
-          <a class="social-big-btn" href="https://docs.torchpad.fun" rel="noopener noreferrer" target="_blank">
+          <a class="social-big-btn" href="https://docs.torchylabs.xyz" rel="noopener noreferrer" target="_blank">
             <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path></svg>
             <span class="social-big-title">DOCS</span>
-            <span class="social-big-handle">docs.torchpad.fun</span>
+            <span class="social-big-handle">docs.torchylabs.xyz</span>
           </a>
 
           <a class="social-big-btn" href="https://x.com/Torchpaddotfun" rel="noopener noreferrer" target="_blank">
