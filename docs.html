@@ -672,6 +672,20 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Hide Netlify Badge & Drawer */
+    #netlify-drawer,
+    iframe#netlify-drawer,
+    .netlify-drawer,
+    [data-netlify-drawer],
+    [class*="netlify-drawer"],
+    [id*="netlify-drawer"],
+    div[class*="netlify"] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
   </style>
 </head>
 <body>
