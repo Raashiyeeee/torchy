@@ -1,3 +1,0 @@
-# Cloudflare & Netlify Redirects for Torchy
-/docs      /docs.html   200
-/docs/*    /docs.html   200
